@@ -7,6 +7,7 @@ package com.mycompany.myrestful;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 /**
  *
@@ -18,5 +19,11 @@ public class HelloWorld {
     @Path("helloworld")
     public String helloworld(){
         return "Hello world";
+    }
+    
+    @GET
+    @Path("helloname/{name}")
+    public String hello(@PathParam("name") final String name) {
+      return "Hello " +name;
     }
 }

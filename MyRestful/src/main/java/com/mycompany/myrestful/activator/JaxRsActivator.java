@@ -5,6 +5,7 @@
  */
 package com.mycompany.myrestful.activator;
 
+
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,9 +18,6 @@ import javax.ws.rs.core.Application;
  */
 @ApplicationPath("/rest")
 public class JaxRsActivator extends Application{
-    @GET
-    @Path("helloname/{name}")
-    public String hello(@PathParam("name") final String name) {
-      return "Hello " +name;
-}
+    
+
 }
