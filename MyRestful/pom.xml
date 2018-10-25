@@ -4,7 +4,7 @@
 
     <groupId>com.mycompany</groupId>
     <artifactId>MyRestful</artifactId>
-    <version></version>
+    <version>1</version>
     <packaging>war</packaging>
 
     <name>MyRestful</name>
@@ -16,16 +16,22 @@
     </properties>
     
     <dependencies>
-        <!--<dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>7.0</version>
-            <scope>provided</scope>
-        </dependency>-->
         <dependency>
                 <version>3.0.12.Final</version> 
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>jaxrs-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20180130</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>7.0</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
 

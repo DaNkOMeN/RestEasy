@@ -1,2 +1,3 @@
-com/mycompany/myrestful/activator/JaxRsActivator.class
 com/mycompany/myrestful/HelloWorld.class
+com/mycompany/myrestful/activator/JaxRsActivator.class
+com/mycompany/myrestful/model/Formula.class
