@@ -1,0 +1,24 @@
+{ 
+  "nameOfUniversuty": "RSATU",	
+  "arrayOfGroup": [
+    {
+      
+      "RSATU": {
+        "listOfStudent": [
+          {
+            "firstname": "danya",
+            "secondname": "golovkin",
+            "nameOfGroup": "IPB-15"
+          },
+          {
+            "firstname": "tanya",
+            "secondname": "potekunova",
+            "nameOfGroup": "IPB-15"
+          }
+        ],
+        "nameOfGroup": "IPB-15"
+      }
+      
+    }
+  ]
+}
