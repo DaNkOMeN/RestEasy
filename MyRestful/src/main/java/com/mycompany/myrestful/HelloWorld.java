@@ -9,6 +9,7 @@ import com.mycompany.myrestful.model.ErrorClass;
 import com.mycompany.myrestful.model.Formula;
 import com.mycompany.myrestful.model.Group;
 import com.mycompany.myrestful.model.Student;
+import com.mycompany.myrestful.model.TestForRest;
 import com.mycompany.myrestful.model.University;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -37,16 +38,22 @@ import org.json.*;
 public class HelloWorld {
     
     public static void main(String[] args){
-        University rsatu = new University("Rsatu");
-        Group ipb15 = new Group("ipb-15");
-        Student danya = new Student("Danya","Golovkin","Ipb-15");
-        Student tanya = new Student("Tanya","Potekunova","Ipb-15");
-        ipb15.setStudent(danya);
-        ipb15.setStudent(tanya);
-        rsatu.setGroup("ipb-15", ipb15);
-        
-        JSONObject object = new JSONObject(rsatu);
-        log(object);
+//        University rsatu = new University("Rsatu");
+//        Group ipb15 = new Group("ipb-15");
+//        Student danya = new Student("Danya","Golovkin","Ipb-15");
+//        Student tanya = new Student("Tanya","Potekunova","Ipb-15");
+//        ipb15.setStudent(danya);
+//        ipb15.setStudent(tanya);
+//        rsatu.setGroup("ipb-15", ipb15);
+//        
+//        JSONObject object = new JSONObject(rsatu);
+//        log(object);
+
+          TestForRest test = new TestForRest("KEK");
+          test.setSomeOtherShit("LOL");
+          test.setSomeOtherShit("VALIDOL");
+          JSONObject object = new JSONObject(test);
+          log(object);
     }
     
     private static void log(Object print) {
@@ -72,16 +79,16 @@ public class HelloWorld {
     @Path("univers")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public ErrorClass giveMeMyStudent(University university){
+    public ErrorClass giveMeMyStudent(TestForRest test){//University university){
         ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
         Validator validator = validatorFactory.getValidator();
         
-        University universe = new University("Jopa");
         
-        Set<ConstraintViolation<University>> blablabla = validator.validate(universe);
+        
+        Set<ConstraintViolation<TestForRest>> blablabla = validator.validate(test);
         
         StringBuilder stringbuilder = new StringBuilder();
-        for (ConstraintViolation<University> bla : blablabla){
+        for (ConstraintViolation<TestForRest> bla : blablabla){
             stringbuilder.append("property: ");
             stringbuilder.append(bla.getPropertyPath());
             stringbuilder.append(" value :");

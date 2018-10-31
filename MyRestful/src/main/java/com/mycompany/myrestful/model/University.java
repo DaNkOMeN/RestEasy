@@ -21,6 +21,7 @@ public class University {
     
     @Column(name = "nameOfUnivervity")
     @NotNull(message = "Need nameOfUniversity")
+ //   @Size(min = 3)
     private String nameOfUniversity;
 
     public University(String nameOfUniversity) {

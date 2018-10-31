@@ -2,6 +2,7 @@ com/mycompany/myrestful/HelloWorld.class
 com/mycompany/myrestful/model/University.class
 com/mycompany/myrestful/activator/JaxRsActivator.class
 com/mycompany/myrestful/model/Group.class
+com/mycompany/myrestful/model/TestForRest.class
 com/mycompany/myrestful/model/ErrorClass.class
 com/mycompany/myrestful/model/Student.class
 com/mycompany/myrestful/model/Formula.class
