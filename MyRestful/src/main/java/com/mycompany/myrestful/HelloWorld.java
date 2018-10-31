@@ -5,10 +5,19 @@
  */
 package com.mycompany.myrestful;
 
+import com.mycompany.myrestful.model.ErrorClass;
 import com.mycompany.myrestful.model.Formula;
+import com.mycompany.myrestful.model.Group;
+import com.mycompany.myrestful.model.Student;
+import com.mycompany.myrestful.model.University;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Set;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -26,6 +35,25 @@ import org.json.*;
  */
 @Path("/")
 public class HelloWorld {
+    
+    public static void main(String[] args){
+        University rsatu = new University("Rsatu");
+        Group ipb15 = new Group("ipb-15");
+        Student danya = new Student("Danya","Golovkin","Ipb-15");
+        Student tanya = new Student("Tanya","Potekunova","Ipb-15");
+        ipb15.setStudent(danya);
+        ipb15.setStudent(tanya);
+        rsatu.setGroup("ipb-15", ipb15);
+        
+        JSONObject object = new JSONObject(rsatu);
+        log(object);
+    }
+    
+    private static void log(Object print) {
+		System.out.println(print);
+ 
+	}
+    
     @GET
     @Path("helloworld")
     @Produces(MediaType.APPLICATION_JSON)
@@ -40,19 +68,45 @@ public class HelloWorld {
     }
     
    
+    @POST
+    @Path("univers")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public ErrorClass giveMeMyStudent(University university){
+        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+        Validator validator = validatorFactory.getValidator();
+        
+        University universe = new University("Jopa");
+        
+        Set<ConstraintViolation<University>> blablabla = validator.validate(universe);
+        
+        StringBuilder stringbuilder = new StringBuilder();
+        for (ConstraintViolation<University> bla : blablabla){
+            stringbuilder.append("property: ");
+            stringbuilder.append(bla.getPropertyPath());
+            stringbuilder.append(" value :");
+            stringbuilder.append(bla.getInvalidValue());
+            stringbuilder.append(" message ");
+            stringbuilder.append(bla.getMessage());
+            
+        }
+        String kek = stringbuilder.toString();
+        return new ErrorClass(kek);
+    }
+
+    
+    
+    
+    
+    
+    
     
     @POST
     @Path("arif")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Formula count(Formula form){
-       String a = form.getForm();
-//       StringBuilder b = new StringBuilder(a);
-//       b.append("Jopa");
-//       a = b.toString();
-//       Formula form2 = new Formula(a);
-//        return form2;
-
+        String a = form.getForm();
         char[] ch = a.toCharArray();
         String str1 = "";
         String str2 = "";
@@ -68,19 +122,19 @@ public class HelloWorld {
         while (count < ch.length - 1){
             char c = ch[countFirst];
 
-            if(Character.isDigit(c)){//проверка является ли символ числом
-                String strTmp = Character.toString(c);//преобразование char в String
-                str1 = str1.concat(strTmp);//склеивание последовательности символов
-                x = Double.parseDouble(str1);//преобразование строки чисел в double
-                countFirst++;//счетчик первого числа
-                count++;//общий счетчик
-                countSecond++;//счетчик второго числа
+            if(Character.isDigit(c)){
+                String strTmp = Character.toString(c);
+                str1 = str1.concat(strTmp);
+                x = Double.parseDouble(str1);
+                countFirst++;
+                count++;
+                countSecond++;
 
             } else {
                 countSecond++;
                 count = countSecond;
 
-                charTmp = c;//определяем оператор
+                charTmp = c;
                 operator = Character.toString(charTmp);
 
                 char c2 = ch[countSecond];
@@ -108,4 +162,7 @@ public class HelloWorld {
         form.setForm(b);
         return form;
     }
+    
+    
+    
  }

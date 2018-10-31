@@ -1,3 +1,7 @@
 /home/danko/Загрузки/RestEasy/MyRestful/src/main/java/com/mycompany/myrestful/HelloWorld.java
 /home/danko/Загрузки/RestEasy/MyRestful/src/main/java/com/mycompany/myrestful/activator/JaxRsActivator.java
+/home/danko/Загрузки/RestEasy/MyRestful/src/main/java/com/mycompany/myrestful/model/ErrorClass.java
 /home/danko/Загрузки/RestEasy/MyRestful/src/main/java/com/mycompany/myrestful/model/Formula.java
+/home/danko/Загрузки/RestEasy/MyRestful/src/main/java/com/mycompany/myrestful/model/Group.java
+/home/danko/Загрузки/RestEasy/MyRestful/src/main/java/com/mycompany/myrestful/model/University.java
+/home/danko/Загрузки/RestEasy/MyRestful/src/main/java/com/mycompany/myrestful/model/Student.java
