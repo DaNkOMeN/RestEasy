@@ -5,15 +5,19 @@
  */
 package com.mycompany.myrestful;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.mycompany.myrestful.model.ErrorClass;
 import com.mycompany.myrestful.model.Formula;
 import com.mycompany.myrestful.model.Group;
 import com.mycompany.myrestful.model.Student;
-import com.mycompany.myrestful.model.TestForRest;
+import com.mycompany.myrestful.model.TestArray;
+import com.mycompany.myrestful.model.TestInt;
 import com.mycompany.myrestful.model.University;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -36,30 +40,30 @@ import org.json.*;
  */
 @Path("/")
 public class HelloWorld {
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     
     public static void main(String[] args){
-//        University rsatu = new University("Rsatu");
-//        Group ipb15 = new Group("ipb-15");
-//        Student danya = new Student("Danya","Golovkin","Ipb-15");
-//        Student tanya = new Student("Tanya","Potekunova","Ipb-15");
-//        ipb15.setStudent(danya);
-//        ipb15.setStudent(tanya);
-//        rsatu.setGroup("ipb-15", ipb15);
-//        
-//        JSONObject object = new JSONObject(rsatu);
-//        log(object);
-
-          TestForRest test = new TestForRest("KEK");
-          test.setSomeOtherShit("LOL");
-          test.setSomeOtherShit("VALIDOL");
-          JSONObject object = new JSONObject(test);
-          log(object);
+////        University rsatu = new University("Rsatu");
+////        Group ipb15 = new Group("ipb-15");
+////        Student danya = new Student("Danya","Golovkin","Ipb-15");
+////        Student tanya = new Student("Tanya","Potekunova","Ipb-15");
+////        ipb15.setStudent(danya);
+////        ipb15.setStudent(tanya);
+////        rsatu.setGroup("ipb-15", ipb15);
+////        
+////        JSONObject object = new JSONObject(rsatu);
+////        log(object);
+//
+//          Formula test = new Formula("kek");
+          TestArray test = new TestArray();
+          test.setString("mama");
+          test.setString("papa");
+          String json = GSON.toJson(test);
+         System.out.println(json);
+          
     }
     
-    private static void log(Object print) {
-		System.out.println(print);
- 
-	}
+   
     
     @GET
     @Path("helloworld")
@@ -76,33 +80,33 @@ public class HelloWorld {
     
    
     @POST
-    @Path("univers")
+    @Path("danko")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public ErrorClass giveMeMyStudent(TestForRest test){//University university){
+    public Formula myMethod(Formula test){
         ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
         Validator validator = validatorFactory.getValidator();
-        
-        
-        
-        Set<ConstraintViolation<TestForRest>> blablabla = validator.validate(test);
-        
-        StringBuilder stringbuilder = new StringBuilder();
-        for (ConstraintViolation<TestForRest> bla : blablabla){
-            stringbuilder.append("property: ");
-            stringbuilder.append(bla.getPropertyPath());
-            stringbuilder.append(" value :");
-            stringbuilder.append(bla.getInvalidValue());
-            stringbuilder.append(" message ");
-            stringbuilder.append(bla.getMessage());
-            
-        }
-        String kek = stringbuilder.toString();
-        return new ErrorClass(kek);
+        Set<ConstraintViolation<Formula>> constraintViolation = validator.validate(test);
+        StringBuilder builder = new StringBuilder();
+        for (ConstraintViolation<Formula> cv : constraintViolation)
+        builder.append(String.format("Внимание, ошибка! property: [%s], value: [%s], message: [%s]",  cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage()));
+        String mystring = builder.toString();
+        test.setForm(mystring + "govno");
+        return test;
     }
-
+       
     
     
+  @POST
+  @Path("example")
+  @Produces(MediaType.APPLICATION_XML)
+  @Consumes(MediaType.APPLICATION_XML) 
+  public TestArray intMethod(TestArray test){
+//      int k = test.();
+//      k++;
+//      test.setForm(k);
+      return test;
+  }
     
     
     
