@@ -16,15 +16,15 @@ import javax.validation.constraints.NotNull;
  */
 
 public class Student {
-    @Column(name = "firstname")
+    //@Column(name = "firstname")
     @NotNull(message = "Need firstname")
     private String firstname;
     
-    @Column(name = "secondname")
+    //@Column(name = "secondname")
     @NotNull(message = "Need lastname")
     private String secondname;
     
-    @Column(name = "nameOfGroup")
+    //@Column(name = "nameOfGroup")
     @NotNull(message = "Need group")
     private String nameOfGroup;
 
@@ -37,9 +37,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(String danya) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
     
     
 

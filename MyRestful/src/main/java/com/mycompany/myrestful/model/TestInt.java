@@ -11,6 +11,7 @@ package com.mycompany.myrestful.model;
  */
 public class TestInt {
     private int form;
+    
 
     public TestInt(){
         

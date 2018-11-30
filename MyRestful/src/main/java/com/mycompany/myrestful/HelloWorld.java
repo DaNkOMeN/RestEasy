@@ -9,15 +9,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mycompany.myrestful.model.ErrorClass;
 import com.mycompany.myrestful.model.Formula;
-import com.mycompany.myrestful.model.Group;
 import com.mycompany.myrestful.model.Student;
-import com.mycompany.myrestful.model.TestArray;
+import com.mycompany.myrestful.model.MyGroup;
 import com.mycompany.myrestful.model.TestInt;
 import com.mycompany.myrestful.model.University;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -42,34 +43,35 @@ import org.json.*;
 public class HelloWorld {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     
+   
     public static void main(String[] args){
-////        University rsatu = new University("Rsatu");
-////        Group ipb15 = new Group("ipb-15");
-////        Student danya = new Student("Danya","Golovkin","Ipb-15");
-////        Student tanya = new Student("Tanya","Potekunova","Ipb-15");
-////        ipb15.setStudent(danya);
-////        ipb15.setStudent(tanya);
-////        rsatu.setGroup("ipb-15", ipb15);
-////        
-////        JSONObject object = new JSONObject(rsatu);
-////        log(object);
-//
-//          Formula test = new Formula("kek");
-          TestArray test = new TestArray();
-          test.setString("mama");
-          test.setString("papa");
-          String json = GSON.toJson(test);
-         System.out.println(json);
-          
+       
     }
-    
+   
    
     
+    
+    
+    
+  
+    
+    public static void forth(){
+        Student danya = new Student("Danya", "Golovkin", "ipb-15");
+        JSONObject object = new JSONObject(danya);
+        String json = GSON.toJson(object);
+        System.out.println(json);
+    }
+    
     @GET
-    @Path("helloworld")
+    @Path("factorial/{number}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String helloworld(){
-        return "Hello world";
+    public int helloworld(@PathParam("number") int number){
+        int result = 1;
+        for(int i =1; i<=number; i++)
+        {
+            result *= i;
+        }
+        return result;
     }
     
     @GET
@@ -81,8 +83,8 @@ public class HelloWorld {
    
     @POST
     @Path("danko")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces("application/json")
+    @Consumes("application/json")
     public Formula myMethod(Formula test){
         ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
         Validator validator = validatorFactory.getValidator();
@@ -99,12 +101,11 @@ public class HelloWorld {
     
   @POST
   @Path("example")
-  @Produces(MediaType.APPLICATION_XML)
-  @Consumes(MediaType.APPLICATION_XML) 
-  public TestArray intMethod(TestArray test){
-//      int k = test.();
-//      k++;
-//      test.setForm(k);
+  @Produces("application/json")
+  @Consumes("application/json")
+  public MyGroup intMethod(MyGroup test){
+      Student sanya = new Student("Sanya","Sanya","Ivs-15");
+      test.setString(sanya);
       return test;
   }
     
